@@ -7,7 +7,7 @@
                   :views-count="post.viewsCount"
                   :username="post.username"
         />
-        <Loader v-if="loadingContent" class="contentLoader"/>
+        <Loader v-if="posts.length > 0" class="contentLoader"/>
     </div>
 </template>
 
@@ -37,7 +37,7 @@
     ];
 
     const ANYCORS = "https://cors-anywhere.herokuapp.com/";
-    const POSTAMOUNT = 7;
+    const POSTAMOUNT = 5;
 
     export default {
         name: "Posts",
@@ -46,7 +46,6 @@
             Loader
         },
         mounted() {
-            // just to see nice page loader
             setTimeout(() => {
                 this.loadMorePosts();
                 window.addEventListener('scroll', debounce(this.handleScroll, 200));
@@ -55,7 +54,6 @@
         data() {
             return {
                 posts: [],
-                loadingContent: false
             }
         },
         methods: {
@@ -75,13 +73,11 @@
                             }
                         )
                     }
-                    this.loadingContent = false;
                 }));
             },
             handleScroll() {
                 let distanceFromBottom = document.body.scrollHeight - window.innerHeight - window.scrollY;
                 if (distanceFromBottom < 100) {
-                    this.loadingContent = true;
                     this.loadMorePosts();
                 }
             }
