@@ -9,6 +9,8 @@
 </template>
 
 <style lang="scss">
+    @import "assets/scss/theme.scss";
+
     *,
     *::before,
     *::after {
@@ -18,11 +20,11 @@
     body {
         margin: 0;
         padding: 0;
-        background-color: #ffffff;
+        background-color: $backgroundWhite;
         overflow-x: hidden;
 
         @media (min-width: 600px) {
-            background-color: #fafafa;
+            background-color: $backgroundLight;
         }
     }
 
@@ -44,34 +46,34 @@
     }
 
     ::-webkit-scrollbar-thumb {
-        background: #000000;
-        border: solid 4px #fafafa;
+        background-color: #000000;
+        border: solid 4px $backgroundLight;
         border-radius: 15px;
     }
 
     ::-webkit-scrollbar-thumb:hover {
-        background: #000000;
+        background-color: #000000;
     }
 
     ::-webkit-scrollbar-thumb:active {
-        background: #000000;
+        background-color: #000000;
     }
 
     ::-webkit-scrollbar-track {
-        background: transparent;
+        background-color: transparent;
         border-radius: 50px;
     }
 
     ::-webkit-scrollbar-track:hover {
-        background: transparent;
+        background-color: transparent;
     }
 
     ::-webkit-scrollbar-track:active {
-        background: transparent;
+        background-color: transparent;
     }
 
     ::-webkit-scrollbar-corner {
-        background: transparent;
+        background-color: transparent;
     }
 
     /*#nav {*/

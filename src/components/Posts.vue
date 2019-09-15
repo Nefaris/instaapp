@@ -1,5 +1,6 @@
 <template>
     <div class="postsContainer">
+        <Loader v-if="posts.length === 0"/>
         <Postcard v-for="post in posts" :key="post.postId"
                   :image-src="post.photoUrl"
                   :image-desc="post.photoDescription"
@@ -11,6 +12,10 @@
 
 <script>
     import Postcard from "./Postcard";
+    import Loader from "./Loader";
+    import axios from 'axios';
+    import debounce from 'lodash.debounce';
+
 
     const mockImages = [
         require("../assets/dolomites-4342531_640.jpg"),
@@ -18,52 +23,58 @@
         require("../assets/mountaineer-2080138_640.jpg"),
         require("../assets/thunderstorm-3440450_640.jpg"),
         require("../assets/waterfall-2227010_640.jpg"),
+        require("../assets/dolomites-4342531_640.jpg"),
+        require("../assets/mount-st-helens-164848_640.jpg"),
+        require("../assets/sheep-4474683_640.jpg"),
+        require("../assets/sunrise-4473359_640.jpg"),
+        require("../assets/way-4459666_640.jpg"),
     ];
+
+    const ANYCORS = "https://cors-anywhere.herokuapp.com/";
+    const POSTAMOUNT = 10;
 
     export default {
         name: "Posts",
         components: {
-            Postcard
+            Postcard,
+            Loader
+        },
+        mounted() {
+            // just to see nice page loader
+            setTimeout(() => {
+                this.loadMorePosts();
+                window.addEventListener('scroll', debounce(this.handleScroll, 200));
+            }, 3000);
         },
         data() {
             return {
-                posts: [
-                    {
-                        "postId": 0,
-                        "viewsCount": 241,
-                        "username": "Robert Wagner",
-                        "photoUrl": mockImages[0],
-                        "photoDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                    },
-                    {
-                        "postId": 1,
-                        "viewsCount": 1241,
-                        "username": "Brenda Foster",
-                        "photoUrl": mockImages[1],
-                        "photoDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                    },
-                    {
-                        "postId": 2,
-                        "viewsCount": 21,
-                        "username": "Roy Hill",
-                        "photoUrl": mockImages[2],
-                        "photoDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                    },
-                    {
-                        "postId": 3,
-                        "viewsCount": 165,
-                        "username": "Kathryn Davis",
-                        "photoUrl": mockImages[3],
-                        "photoDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                    },
-                    {
-                        "postId": 4,
-                        "viewsCount": 1165,
-                        "username": "John Doe",
-                        "photoUrl": mockImages[4],
-                        "photoDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                posts: []
+            }
+        },
+        methods: {
+            loadMorePosts() {
+                axios.all([
+                    axios.get('https://baconipsum.com/api/?type=meat-and-filler?paras=' + POSTAMOUNT),
+                    axios.get(ANYCORS + "https://uinames.com/api?amount=" + POSTAMOUNT)
+                ]).then(axios.spread((loremRes, nameRes) => {
+                    for (let i = 0; i < POSTAMOUNT; i++) {
+                        this.posts.push(
+                            {
+                                "postId": this.posts.length,
+                                "viewsCount": Math.floor(Math.random() * 2000),
+                                "username": nameRes.data[i].name + " " + nameRes.data[i].surname,
+                                "photoUrl": mockImages[Math.floor(Math.random() * mockImages.length)],
+                                "photoDescription": loremRes.data[i]
+                            }
+                        )
                     }
-                ]
+                }));
+            },
+            handleScroll() {
+                let distanceFromBottom = document.body.scrollHeight - window.innerHeight - window.scrollY;
+                if (distanceFromBottom < 300) {
+                    this.loadMorePosts();
+                }
             }
         }
     }

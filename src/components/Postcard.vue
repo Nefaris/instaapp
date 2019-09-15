@@ -36,20 +36,25 @@
 </script>
 
 <style scoped lang="scss">
+    @import "../assets/scss/theme.scss";
+
+    $postCardVerticalSpace: 20px;
+
     .postcard {
-        border-top: 1px solid rgba(0, 0, 0, .0975);
-        border-bottom: 1px solid rgba(0, 0, 0, .0975);
+        border-top: $postCardBorderColor;
+        border-bottom: $postCardBorderColor;
         margin-bottom: 60px;
 
         @media(min-width: 600px) {
-            border-left: 1px solid rgba(0, 0, 0, .0975);
-            border-right: 1px solid rgba(0, 0, 0, .0975);
-            background-color: #ffffff;
+            border-left: $postCardBorderColor;
+            border-right: $postCardBorderColor;
+            background-color: $backgroundWhite;
+            box-shadow: 0 0 5px 0 rgba(0, 0, 0, .05), 0 2px 10px 0 rgba(0, 0, 0, .05);
         }
     }
 
     .contentContainer {
-        padding: 12px 20px;
+        padding: 12px $postCardVerticalSpace;
     }
 
     .userDatails {
@@ -70,7 +75,7 @@
     }
 
     .topBar {
-        padding: 20px 20px;
+        padding: 20px $postCardVerticalSpace;
     }
 
     .photo {
