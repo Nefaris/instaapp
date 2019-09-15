@@ -27,13 +27,6 @@
     $transition-duration: 2s;
     $path-length: 157px;
 
-    .loaderWrapper {
-        position: absolute;
-        transform: translate(-50%, -50%);
-        top: 55%;
-        left: 50%;
-    }
-
     svg {
         overflow: visible;
         width: 100px;

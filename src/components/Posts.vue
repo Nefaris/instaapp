@@ -1,12 +1,13 @@
 <template>
     <div class="postsContainer">
-        <Loader v-if="posts.length === 0"/>
+        <Loader class="pageLoader" v-if="posts.length === 0"/>
         <Postcard v-for="post in posts" :key="post.postId"
                   :image-src="post.photoUrl"
                   :image-desc="post.photoDescription"
                   :views-count="post.viewsCount"
                   :username="post.username"
         />
+        <Loader v-if="loadingContent" class="contentLoader"/>
     </div>
 </template>
 
@@ -18,20 +19,25 @@
 
 
     const mockImages = [
-        require("../assets/dolomites-4342531_640.jpg"),
-        require("../assets/mount-st-helens-164848_640.jpg"),
-        require("../assets/mountaineer-2080138_640.jpg"),
-        require("../assets/thunderstorm-3440450_640.jpg"),
-        require("../assets/waterfall-2227010_640.jpg"),
-        require("../assets/dolomites-4342531_640.jpg"),
-        require("../assets/mount-st-helens-164848_640.jpg"),
-        require("../assets/sheep-4474683_640.jpg"),
-        require("../assets/sunrise-4473359_640.jpg"),
-        require("../assets/way-4459666_640.jpg"),
+        require("../assets/img/mockup1.jpg"),
+        require("../assets/img/mockup2.jpg"),
+        require("../assets/img/mockup3.jpg"),
+        require("../assets/img/mockup4.jpg"),
+        require("../assets/img/mockup5.jpg"),
+        require("../assets/img/mockup6.jpg"),
+        require("../assets/img/mockup7.jpg"),
+        require("../assets/img/mockup8.jpg"),
+        require("../assets/img/mockup9.jpg"),
+        require("../assets/img/mockup10.jpg"),
+        require("../assets/img/mockup11.jpg"),
+        require("../assets/img/mockup12.jpg"),
+        require("../assets/img/mockup13.jpg"),
+        require("../assets/img/mockup14.jpg"),
+        require("../assets/img/mockup15.jpg"),
     ];
 
     const ANYCORS = "https://cors-anywhere.herokuapp.com/";
-    const POSTAMOUNT = 10;
+    const POSTAMOUNT = 7;
 
     export default {
         name: "Posts",
@@ -44,11 +50,12 @@
             setTimeout(() => {
                 this.loadMorePosts();
                 window.addEventListener('scroll', debounce(this.handleScroll, 200));
-            }, 3000);
+            }, 2000);
         },
         data() {
             return {
-                posts: []
+                posts: [],
+                loadingContent: false
             }
         },
         methods: {
@@ -68,11 +75,13 @@
                             }
                         )
                     }
+                    this.loadingContent = false;
                 }));
             },
             handleScroll() {
                 let distanceFromBottom = document.body.scrollHeight - window.innerHeight - window.scrollY;
-                if (distanceFromBottom < 300) {
+                if (distanceFromBottom < 100) {
+                    this.loadingContent = true;
                     this.loadMorePosts();
                 }
             }
@@ -89,5 +98,16 @@
         @media (min-width: 600px) {
             padding-top: 120px;
         }
+    }
+
+    .pageLoader {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 55%;
+        left: 50%;
+    }
+
+    .contentLoader {
+        transform: scale(.5) translateY(-20%);
     }
 </style>

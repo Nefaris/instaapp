@@ -2,7 +2,7 @@
     <div class="postcard">
         <div class="topBar">
             <div class="userDatails">
-                <img class="userIcon" src="../assets/user-solid.svg" alt=""/>
+                <img class="userIcon" src="../assets/img/user-solid.svg" alt=""/>
                 <p class="username">{{ username }}</p>
             </div>
         </div>
@@ -10,7 +10,7 @@
         <div class="contentContainer">
             <div class="actionsBar">
                 <div class="views">
-                    <img class="viewsIcon" src="../assets/eye-solid.svg" alt=""/>
+                    <img class="viewsIcon" src="../assets/img/eye-solid.svg" alt=""/>
                     <p class="viewsCount">
                         {{ viewsCount }}
                     </p>
@@ -36,7 +36,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import "../assets/scss/theme.scss";
+    @import "../assets/scss/theme";
 
     $postCardVerticalSpace: 20px;
 
