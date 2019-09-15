@@ -71,7 +71,7 @@
 
 <style scoped lang="scss">
     .postsContainer {
-        padding-top: 60px;
+        padding-top: 46px;
         max-width: 600px;
         margin: 0 auto;
 

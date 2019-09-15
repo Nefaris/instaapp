@@ -66,6 +66,7 @@
     .userIcon {
         max-width: 18px;
         margin-right: 14px;
+        margin-top: -2px;
     }
 
     .topBar {

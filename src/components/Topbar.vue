@@ -15,7 +15,7 @@
         position: fixed;
         top: 0;
         left: 0;
-        height: 60px;
+        height: 46px;
         width: 100%;
         padding: 10px 0;
         /*border-bottom: 1px solid rgba(0, 0, 0, .0975);*/
@@ -31,6 +31,6 @@
     }
 
     img {
-        max-height: 42px;
+        max-height: 26px;
     }
 </style>
