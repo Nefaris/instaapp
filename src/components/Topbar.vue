@@ -12,9 +12,10 @@
 
 <style scoped lang="scss">
     .topbar {
-        position: fixed;
+        position: sticky;
         top: 0;
         left: 0;
+        z-index: 999;
         height: 46px;
         width: 100%;
         padding: 10px 0;

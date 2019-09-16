@@ -22,6 +22,7 @@
         padding: 0;
         background-color: $backgroundWhite;
         overflow-x: hidden;
+        overscroll-behavior: contain;
 
         @media (min-width: 600px) {
             background-color: $backgroundLight;

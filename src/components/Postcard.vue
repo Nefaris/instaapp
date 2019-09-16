@@ -6,7 +6,10 @@
                 <p class="username">{{ username }}</p>
             </div>
         </div>
-        <img class="photo" :src="imageSrc" alt="">
+
+        <img v-if="imageSrc.length === 1" class="photo" :src="imageSrc" alt="">
+        <Carousel v-if="imageSrc.length > 1" :images-array="imageSrc"/>
+
         <div class="contentContainer">
             <div class="actionsBar">
                 <div class="views">
@@ -24,10 +27,15 @@
 </template>
 
 <script>
+    import Carousel from "./Carousel";
+
     export default {
         name: "Postcard",
+        components: {
+            Carousel
+        },
         props: {
-            imageSrc: String,
+            imageSrc: Array,
             imageDesc: String,
             viewsCount: Number,
             username: String

@@ -1,12 +1,14 @@
 <template>
     <div class="postsContainer">
         <Loader class="pageLoader" v-if="posts.length === 0"/>
+
         <Postcard v-for="post in posts" :key="post.postId"
                   :image-src="post.photoUrl"
                   :image-desc="post.photoDescription"
                   :views-count="post.viewsCount"
                   :username="post.username"
         />
+
         <Loader v-if="posts.length > 0" class="contentLoader"/>
     </div>
 </template>
@@ -14,9 +16,9 @@
 <script>
     import Postcard from "./Postcard";
     import Loader from "./Loader";
+    import Carousel from "./Carousel";
     import axios from 'axios';
     import debounce from 'lodash.debounce';
-
 
     const mockImages = [
         require("../assets/img/mockup1.jpg"),
@@ -37,24 +39,23 @@
     ];
 
     const ANYCORS = "https://cors-anywhere.herokuapp.com/";
-    const POSTAMOUNT = 5;
+    const POSTAMOUNT = 3;
 
     export default {
         name: "Posts",
         components: {
             Postcard,
-            Loader
-        },
-        mounted() {
-            setTimeout(() => {
-                this.loadMorePosts();
-                window.addEventListener('scroll', debounce(this.handleScroll, 200));
-            }, 2000);
+            Loader,
+            Carousel
         },
         data() {
             return {
-                posts: [],
+                posts: []
             }
+        },
+        mounted() {
+            this.loadMorePosts();
+            window.addEventListener('scroll', debounce(this.handleScroll, 200));
         },
         methods: {
             loadMorePosts() {
@@ -68,7 +69,7 @@
                                 "postId": this.posts.length,
                                 "viewsCount": Math.floor(Math.random() * 2000),
                                 "username": nameRes.data[i].name + " " + nameRes.data[i].surname,
-                                "photoUrl": mockImages[Math.floor(Math.random() * mockImages.length)],
+                                "photoUrl": this.generateImageSources(),
                                 "photoDescription": loremRes.data[i]
                             }
                         )
@@ -80,6 +81,16 @@
                 if (distanceFromBottom < 100) {
                     this.loadMorePosts();
                 }
+            },
+            // temp solution
+            generateImageSources() {
+                let imgArray = [];
+
+                for (let i = 0; i <= Math.round(Math.random() * 5); i++) {
+                    imgArray.push(mockImages[Math.floor(Math.random() * mockImages.length)]);
+                }
+
+                return imgArray;
             }
         }
     }
@@ -87,7 +98,6 @@
 
 <style scoped lang="scss">
     .postsContainer {
-        padding-top: 46px;
         max-width: 600px;
         margin: 0 auto;
 
