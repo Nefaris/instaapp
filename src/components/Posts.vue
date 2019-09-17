@@ -7,6 +7,7 @@
                   :image-desc="post.photoDescription"
                   :views-count="post.viewsCount"
                   :username="post.username"
+                  :post-date="post.postDate"
         />
 
         <Loader v-if="posts.length > 0" class="contentLoader"/>
@@ -70,7 +71,8 @@
                                 "viewsCount": Math.floor(Math.random() * 2000),
                                 "username": nameRes.data[i].name + " " + nameRes.data[i].surname,
                                 "photoUrl": this.generateImageSources(),
-                                "photoDescription": loremRes.data[i]
+                                "photoDescription": loremRes.data[i],
+                                "postDate": new Date().toLocaleDateString()
                             }
                         )
                     }
@@ -78,7 +80,7 @@
             },
             handleScroll() {
                 let distanceFromBottom = document.body.scrollHeight - window.innerHeight - window.scrollY;
-                if (distanceFromBottom < 100) {
+                if (distanceFromBottom < 350) {
                     this.loadMorePosts();
                 }
             },
@@ -86,7 +88,7 @@
             generateImageSources() {
                 let imgArray = [];
 
-                for (let i = 0; i <= Math.round(Math.random() * 5); i++) {
+                for (let i = 0; i <= Math.round(Math.random() * 4); i++) {
                     imgArray.push(mockImages[Math.floor(Math.random() * mockImages.length)]);
                 }
 

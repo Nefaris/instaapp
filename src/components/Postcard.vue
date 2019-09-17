@@ -5,6 +5,9 @@
                 <img class="userIcon" src="../assets/img/user-solid.svg" alt=""/>
                 <p class="username">{{ username }}</p>
             </div>
+            <div class="dateDetails">
+                {{ postDate }}
+            </div>
         </div>
 
         <img v-if="imageSrc.length === 1" class="photo" :src="imageSrc" alt="">
@@ -38,7 +41,8 @@
             imageSrc: Array,
             imageDesc: String,
             viewsCount: Number,
-            username: String
+            username: String,
+            postDate: String
         }
     }
 </script>
@@ -67,7 +71,13 @@
 
     .userDatails {
         display: flex;
+        flex-grow: 1;
         align-items: center;
+    }
+
+    .dateDetails {
+        font-size: 14px;
+        font-weight: bold;
     }
 
     .username {
@@ -84,6 +94,9 @@
 
     .topBar {
         padding: 20px $postCardVerticalSpace;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
     .photo {
