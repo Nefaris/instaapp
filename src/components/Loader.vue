@@ -40,7 +40,7 @@
 
                 path {
                     animation-delay: $transition-duration / 4;
-                    stroke-dasharray: 0px $path-length + 1;
+                    stroke-dasharray: 0 $path-length + 1;
                     stroke-dashoffset: 1px;
                 }
             }

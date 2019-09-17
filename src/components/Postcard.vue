@@ -57,7 +57,7 @@
         border-bottom: $postCardBorderColor;
         margin-bottom: 60px;
 
-        @media(min-width: 600px) {
+        @media(min-width: $mobileBreakpoint) {
             border-left: $postCardBorderColor;
             border-right: $postCardBorderColor;
             background-color: $backgroundWhite;
@@ -105,6 +105,8 @@
 
     .actionsBar {
         margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
     }
 
     .views {

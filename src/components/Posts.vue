@@ -99,11 +99,13 @@
 </script>
 
 <style scoped lang="scss">
+    @import "../assets/scss/theme.scss";
+
     .postsContainer {
-        max-width: 600px;
+        max-width: $mobileBreakpoint;
         margin: 0 auto;
 
-        @media (min-width: 600px) {
+        @media (min-width: $mobileBreakpoint) {
             padding-top: 120px;
         }
     }
