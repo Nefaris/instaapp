@@ -1,12 +1,13 @@
 <template>
     <div class="carouselWrapper">
-        <div class="swiper-container">
+        <div class="swiper-container" :class="swiperId">
             <img class="multiplePhotosIcon" src="../assets/img/layer-group-solid.svg" alt=""/>
             <div class="swiper-wrapper">
                 <div class="swiper-slide" v-for="image of imagesArray">
                     <img :src="image" alt=""/>
                 </div>
             </div>
+            <div class="swiper-pagination"></div>
         </div>
     </div>
 </template>
@@ -19,9 +20,22 @@
         props: {
             imagesArray: Array
         },
+        data() {
+            return {
+                swiperId: "",
+            }
+        },
+        created() {
+            this.swiperId = "swiper-container-" + Date.now();
+        },
         mounted() {
-            new Swiper('.swiper-container', {
-                autoHeight: true
+            const swiperClass = '.' + this.swiperId;
+            new Swiper(swiperClass, {
+                autoHeight: true,
+                mousewheel: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                }
             });
         }
     }
