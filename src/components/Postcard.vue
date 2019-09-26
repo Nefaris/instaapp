@@ -65,77 +65,77 @@
         }
     }
 
-    .contentContainer {
-        padding: 12px $postCardVerticalSpace;
-    }
-
-    .userDatails {
-        display: flex;
-        flex-grow: 1;
-        align-items: center;
-    }
-
-    .dateDetails {
-        font-size: 14px;
-        font-weight: bold;
-    }
-
-    .username {
-        margin: 0;
-        font-weight: bold;
-        font-size: 14px;
-    }
-
-    .userIcon {
-        max-width: 18px;
-        margin-right: 14px;
-        margin-top: -2px;
-    }
-
     .topBar {
         padding: 20px $postCardVerticalSpace;
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        .userDatails {
+            display: flex;
+            flex-grow: 1;
+            align-items: center;
+
+            .userIcon {
+                max-width: 18px;
+                margin-right: 14px;
+                margin-top: -2px;
+            }
+
+            .username {
+                margin: 0;
+                font-weight: bold;
+                font-size: 14px;
+            }
+        }
+
+        .dateDetails {
+            font-size: 14px;
+            font-weight: bold;
+        }
+    }
+
+    .contentContainer {
+        padding: 12px $postCardVerticalSpace;
+
+        .actionsBar {
+            margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
+
+            .views {
+                display: flex;
+                align-items: center;
+
+                .viewsIcon {
+                    max-width: 20px;
+                    margin-right: 6px;
+                    padding-bottom: 1px;
+                }
+
+                .viewsCount {
+                    margin: 0;
+                    color: #000000;
+                    font-weight: bold;
+                    font-size: 14px;
+                }
+            }
+        }
+
+        .description {
+            padding: 10px 0;
+
+            p {
+                margin: 0;
+                color: #000000;
+                font-size: 14px;
+                line-height: 1.5;
+                text-align: left;
+            }
+        }
     }
 
     .photo {
         max-width: 100%;
-    }
-
-    .actionsBar {
-        margin-top: 10px;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .views {
-        display: flex;
-        align-items: center;
-    }
-
-    .viewsIcon {
-        max-width: 20px;
-        margin-right: 6px;
-        padding-bottom: 1px;
-    }
-
-    .viewsCount {
-        margin: 0;
-        color: #000000;
-        font-weight: bold;
-        font-size: 14px;
-    }
-
-    .description {
-        padding: 10px 0;
-
-        p {
-            margin: 0;
-            color: #000000;
-            font-size: 14px;
-            line-height: 1.5;
-            text-align: left;
-        }
     }
 </style>

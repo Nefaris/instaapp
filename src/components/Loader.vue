@@ -9,8 +9,8 @@
             </g>
             <defs>
                 <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" style="stop-color:#42b783;stop-opacity:1"/>
-                    <stop offset="100%" style="stop-color:#35495e;stop-opacity:1"/>
+                    <stop class="stop1" offset="0%"/>
+                    <stop class="stop2" offset="100%"/>
                 </linearGradient>
             </defs>
         </svg>
@@ -24,8 +24,23 @@
 </script>
 
 <style scoped lang="scss">
+    @import "../assets/scss/theme.scss";
+
     $transition-duration: 2s;
     $path-length: 157px;
+
+    .stop1,
+    .stop2 {
+        stop-opacity: 1
+    }
+
+    .stop1 {
+        stop-color: $primaryColor;
+    }
+
+    .stop2 {
+        stop-color: $secondaryColor;
+    }
 
     svg {
         overflow: visible;

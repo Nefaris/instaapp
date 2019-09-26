@@ -1,9 +1,7 @@
 <template>
     <div class="topbar">
         <div class="innerBar">
-            <div></div>
             <img class="logo" src="../assets/img/logo.png" alt="">
-            <img class="accountSettingIcon" src="../assets/img/user-cog-solid.svg" alt="">
         </div>
     </div>
 </template>
@@ -24,7 +22,7 @@
         z-index: 999;
         height: 50px;
         width: 100%;
-        padding: 10px 0;
+        padding: 10px 20px;
         box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
         background-color: $backgroundLight;
         display: flex;
@@ -33,6 +31,7 @@
 
         @media (min-width: $mobileBreakpoint) {
             background-color: #ffffff;
+            padding: 10px 0;
         }
     }
 
@@ -41,7 +40,7 @@
         width: 100%;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
     }
 
     .accountSettingIcon {

@@ -56,7 +56,7 @@
         },
         mounted() {
             this.loadMorePosts();
-            window.addEventListener('scroll', debounce(this.handleScroll, 200));
+            window.addEventListener('scroll', debounce(this.handleScroll, 100));
         },
         methods: {
             loadMorePosts() {
@@ -80,7 +80,7 @@
             },
             handleScroll() {
                 let distanceFromBottom = document.body.scrollHeight - window.innerHeight - window.scrollY;
-                if (distanceFromBottom < 350) {
+                if (distanceFromBottom < 450) {
                     this.loadMorePosts();
                 }
             },
@@ -106,7 +106,7 @@
         margin: 0 auto;
 
         @media (min-width: $mobileBreakpoint) {
-            padding-top: 120px;
+            padding-top: 80px;
         }
     }
 
